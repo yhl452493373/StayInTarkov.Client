@@ -813,7 +813,7 @@ namespace StayInTarkov.Coop.Components
                 , ESITProtocol.RelayTcp
                 , null
                 , PluginConfigSettings.Instance.CoopSettings.UdpServerLocalPort,
-                EMatchmakerType.GroupLeader);
+                EMatchmakerType.Single);
             OriginalAcceptButton.OnClick.Invoke();
 
             DestroyThis();
