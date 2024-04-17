@@ -185,14 +185,15 @@ namespace StayInTarkov
             Stream stream;
             if (Enum.IsDefined(typeof(LanguageList.Language), userLanguage.Value))
             {
-                LanguageList.LanguageInfo languageInfo = LanguageList.ByLanguage(userLanguage.Value);
+                var userFileName = LanguageList.FileName(userLanguage.Value);
                 stream = typeof(StayInTarkovPlugin).Assembly.GetManifestResourceStream(
-                    languageFiles.First(x => x.EndsWith(languageInfo.FileName)));
+                    languageFiles.First(x => x.EndsWith(userFileName)));
             }
             else
             {
+                var defaultFileName = LanguageList.FileName(LanguageList.Language.English);
                 stream = typeof(StayInTarkovPlugin).Assembly.GetManifestResourceStream(
-                    languageFiles.First(x => x.EndsWith(LanguageList.Default.FileName)));
+                    languageFiles.First(x => x.EndsWith(defaultFileName)));
             }
 
             if (stream == null)
@@ -214,10 +215,11 @@ namespace StayInTarkov
                 }
             }
 
+            var fallbackFileName = LanguageList.FileName(LanguageList.Language.English);
             // Load English Language Stream to Fill any missing expected statements in the Dictionary
             using (sr = new StreamReader(
                        typeof(StayInTarkovPlugin).Assembly.GetManifestResourceStream(
-                           languageFiles.First(x => x.EndsWith(LanguageList.Default.FileName)))))
+                           languageFiles.First(x => x.EndsWith(fallbackFileName)))))
             {
                 foreach (var kvp in JObject.Parse(sr.ReadToEnd()))
                 {
