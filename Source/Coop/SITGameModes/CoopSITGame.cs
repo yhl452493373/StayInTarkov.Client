@@ -148,7 +148,7 @@ namespace StayInTarkov.Coop.SITGameModes
             Logger.LogInfo("CoopGame.Create");
 
             CoopSITGame coopGame =
-                smethod_0<CoopSITGame>(inputTree, profile, backendDateTime, insurance, menuUI, commonUI, preloaderUI, gameUI, location, timeAndWeather, wavesSettings, dateTime
+                smethod_0<CoopSITGame>(inputTree, profile, backendDateTime, insurance, menuUI, gameUI, location, timeAndWeather, wavesSettings, dateTime
                 , callback, fixedDeltaTime, updateQueue, backEndSession, new TimeSpan?(sessionTime));
 
             // ---------------------------------------------------------------------------------
@@ -570,7 +570,7 @@ namespace StayInTarkov.Coop.SITGameModes
         {
             int timeBeforeDeployLocal = Singleton<BackendConfigSettingsClass>.Instance.TimeBeforeDeployLocal;
             DateTime gameStartTime = DateTime.Now.AddSeconds(timeBeforeDeployLocal);
-            new MatchmakerFinalCountdown.GClass3180(base.Profile_0, gameStartTime).ShowScreen(EScreenState.Root);
+            new MatchmakerFinalCountdown.GClass3182(base.Profile_0, gameStartTime).ShowScreen(EScreenState.Root);
             MonoBehaviourSingleton<BetterAudio>.Instance.FadeInVolumeBeforeRaid(timeBeforeDeployLocal);
             Singleton<GUISounds>.Instance.StopMenuBackgroundMusicWithDelay(timeBeforeDeployLocal);
             GameUi.gameObject.SetActive(value: true);
