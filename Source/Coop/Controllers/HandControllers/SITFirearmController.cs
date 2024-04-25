@@ -50,11 +50,11 @@ namespace StayInTarkov.Coop.Controllers.HandControllers
             }
         }
 
-        public override void ReloadMag(MagazineClass magazine, GridItemAddress gridItemAddress, Callback callback)
+        public override void ReloadMag(MagazineClass magazine, GridItemAddress gridItemAddress, Callback finishCallback, Callback startCallback)
         {
             if (CanStartReload())
             {
-                base.ReloadMag(magazine, gridItemAddress, callback);
+                base.ReloadMag(magazine, gridItemAddress, finishCallback, startCallback);
                 ReloadMagPacket reloadMagPacket = new ReloadMagPacket(_player.ProfileId, magazine.Id, gridItemAddress);
                 reloadMagPacket.ProfileId = _player.ProfileId;
                 reloadMagPacket.ItemId = magazine.Id;
